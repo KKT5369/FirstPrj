@@ -8,7 +8,7 @@ public class Manager : MonoBehaviour
     InputManager input = new InputManager();
 
     public static Manager Mg { get { Init(); return mg;}}
-    public static InputManager Input { get {  return mg.input;}}
+    public static InputManager Input { get {  return Mg.input;}}
     
     void Start()
     {

@@ -12,15 +12,14 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private float speed;
-    private Vector3 tagetPos;
-
+    private Vector3 _tagetPos;
     private Define.State state = Define.State.Idle;
-    
+    private Animator _anim;
     void Start()
     {
-        Manager mg = Manager.Mg;
         Manager.Input.mouseAction -= OnMouseClickd;
         Manager.Input.mouseAction += OnMouseClickd;
+        _anim = GetComponent<Animator>();
     }
 
     private float waitRunRatio = 0;
@@ -29,7 +28,7 @@ public class PlayerController : MonoBehaviour
         switch (state)
         {
             case Define.State.Idle:
-                Wait();
+                    Wait();
                 break;
             case Define.State.Moving:
                     Moving();
@@ -37,19 +36,17 @@ public class PlayerController : MonoBehaviour
             
         }
     }
-
+    
     void Wait()
     {
-        Animator animator = GetComponent<Animator>();
-        waitRunRatio = Mathf.Lerp(waitRunRatio, 0, 10.0f * Time.deltaTime);
-        animator.SetFloat("Wait_Run_Ratio", waitRunRatio);
+        //애니메이션 처리
+        _anim.SetFloat("speed" , 0);
     }
     
     void Moving()
     {
-        Animator animator = GetComponent<Animator>();
-        Vector3 dir = tagetPos - transform.position;
-
+        Vector3 dir = _tagetPos - transform.position;
+        //Moving if - 목표지점에 도착 했을때  else - 목표 지점으로 이동
         if (dir.magnitude < 0.001f)
         {
             state = Define.State.Idle;
@@ -58,14 +55,11 @@ public class PlayerController : MonoBehaviour
         {
             float moveDist = Mathf.Clamp(speed * Time.deltaTime,0,dir.magnitude);
             transform.position += dir.normalized * moveDist;
-                
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 10 * Time.deltaTime);
-            waitRunRatio = Mathf.Lerp(waitRunRatio, 1, 10.0f * Time.deltaTime);
-            animator.SetFloat("Wait_Run_Ratio", waitRunRatio);
         }
-
-
         
+        //애니메이션 처리
+        _anim.SetFloat("speed" , speed);
     }
 
     void OnMouseClickd(Define.MouseEvent evn)
@@ -77,7 +71,7 @@ public class PlayerController : MonoBehaviour
         int mask = 1 << LayerMask.NameToLayer("wall");
         if (Physics.Raycast(ray, out hit,100.0f, mask))
         {
-            tagetPos = hit.point;
+            _tagetPos = hit.point;
             state = Define.State.Moving;
         }
         
