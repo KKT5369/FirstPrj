@@ -21,8 +21,7 @@ public class PlayerController : MonoBehaviour
         Manager.Input.mouseAction += OnMouseClickd;
         _anim = GetComponent<Animator>();
     }
-
-    private float waitRunRatio = 0;
+    
     void Update()
     {
         switch (state)
