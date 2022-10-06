@@ -52,9 +52,10 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            float moveDist = Mathf.Clamp(speed * Time.deltaTime,0,dir.magnitude);
-            transform.position += dir.normalized * moveDist;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 10 * Time.deltaTime);
+            
+                float moveDist = Mathf.Clamp(speed * Time.deltaTime,0,dir.magnitude);
+                transform.position += dir.normalized * moveDist;
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 10 * Time.deltaTime);
         }
         
         //애니메이션 처리
@@ -70,8 +71,12 @@ public class PlayerController : MonoBehaviour
         int mask = 1 << LayerMask.NameToLayer("wall");
         if (Physics.Raycast(ray, out hit,100.0f, mask))
         {
-            _tagetPos = hit.point;
-            state = Define.State.Moving;
+            if (!EventSystem.current.IsPointerOverGameObject())
+            {
+                _tagetPos = hit.point;
+                state = Define.State.Moving;    
+            }
+            
         }
         
     }

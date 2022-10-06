@@ -8,9 +8,8 @@ public class Manager : MonoBehaviour
     static Manager Mg { get { Init(); return mg;}}
 
     InputManager input = new InputManager();
-    private UIManager ui = new UIManager();
     public static InputManager Input { get {  return Mg.input;}}
-    public static UIManager UI { get {  return Mg.ui;}}
+    
     void Start()
     {
 	    Init();
@@ -19,7 +18,6 @@ public class Manager : MonoBehaviour
     void Update()
     {
         input.OnUpdate();
-        ui.TalkPanel();
     }
 
     static void Init()
