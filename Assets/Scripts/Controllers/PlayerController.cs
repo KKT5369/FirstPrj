@@ -46,14 +46,17 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 dir = _tagetPos - transform.position;
         //Moving if - 목표지점에 도착 했을때  else - 목표 지점으로 이동
-        if (dir.magnitude < 0.001f)
+
+        bool isBlocked = Physics.Raycast(transform.position + Vector3.up * 1.5f, dir.normalized,
+            0.8f, LayerMask.GetMask("Block"));
+
+        if (dir.magnitude < 0.001f || isBlocked)
         {
             state = Define.State.Idle;
         }
         else
         {
-            
-                float moveDist = Mathf.Clamp(speed * Time.deltaTime,0,dir.magnitude);
+            float moveDist = Mathf.Clamp(speed * Time.deltaTime,0,dir.magnitude);
                 transform.position += dir.normalized * moveDist;
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 10 * Time.deltaTime);
         }
@@ -64,7 +67,6 @@ public class PlayerController : MonoBehaviour
 
     void OnMouseClickd(Define.MouseEvent evn)
     {
-
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         Debug.DrawRay(ray.origin, ray.direction , Color.blue,0.5f);
@@ -76,7 +78,6 @@ public class PlayerController : MonoBehaviour
                 _tagetPos = hit.point;
                 state = Define.State.Moving;    
             }
-            
         }
         
     }

@@ -7,8 +7,10 @@ public class Manager : MonoBehaviour
     static Manager mg;
     static Manager Mg { get { Init(); return mg;}}
 
+    private CanvasManager _canvas = new CanvasManager();
     InputManager input = new InputManager();
     public static InputManager Input { get {  return Mg.input;}}
+    public static CanvasManager Canvas { get {  return Mg._canvas;}}
     
     void Start()
     {
