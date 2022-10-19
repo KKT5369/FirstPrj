@@ -1,3 +1,4 @@
+using System;
 using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -74,5 +75,16 @@ public class PlayerController : MonoBehaviour
             }
         }
         
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("NPC"))
+            Manager.Canvas.tagetOther(other);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Manager.Canvas.tagetOther(null);
     }
 }
