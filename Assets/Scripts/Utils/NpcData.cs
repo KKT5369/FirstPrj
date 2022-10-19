@@ -35,3 +35,18 @@ public class NpcData : MonoBehaviour
         }
     }
 }
+
+[Serializable]
+public class NpcJsonData
+{
+    public int codeId;
+    public string npcName;
+    public List<string> talk;
+    
+}
+
+[Serializable]
+public class NpcJsonDataArr
+{
+    public NpcJsonData[] data;
+}
