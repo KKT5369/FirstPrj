@@ -1,12 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using DefaultNamespace;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Experimental.Audio;
-using UnityEngine.Experimental.Rendering;
-using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {

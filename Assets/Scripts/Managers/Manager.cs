@@ -9,7 +9,9 @@ public class Manager : MonoBehaviour
 
     private CanvasManager _canvas = new CanvasManager();
     InputManager input = new InputManager();
+    private ResourceManager _resource = new ResourceManager();
     public static InputManager Input { get {  return Mg.input;}}
+    public static ResourceManager Resource { get {  return Mg._resource;}}
     public static CanvasManager Canvas { get {  return Mg._canvas;}}
     
     void Start()

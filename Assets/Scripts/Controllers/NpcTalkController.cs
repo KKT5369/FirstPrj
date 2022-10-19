@@ -27,14 +27,12 @@ public class NpcTalkController : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (TalkCheck)
-            transform.parent.LookAt(other.transform);
-        else
-            transform.parent.rotation = Quaternion.Slerp(transform.parent.rotation ,rot,10 * Time.deltaTime);
+        transform.parent.LookAt(other.transform);
     }
 
     private void OnTriggerExit(Collider other)
     {
+        transform.parent.rotation = Quaternion.Slerp(transform.parent.rotation ,rot,1 * Time.deltaTime);
         GameObject Talk = GameObject.Find("MainCanvas").transform.Find("Talk").gameObject;
         Talk.transform.Find("Button").GetComponent<Button>().onClick.RemoveListener(NextTalk);
         Talk.SetActive(false);
