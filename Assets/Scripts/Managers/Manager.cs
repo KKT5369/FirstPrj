@@ -1,19 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Manager : MonoBehaviour
 {
-    static Manager mg;
-    static Manager Mg { get { Init(); return mg;}}
+    static Manager _interface;
+    public static Manager Interface { get { Init(); return _interface;}}
 
     private CanvasManager _canvas = new CanvasManager();
     InputManager input = new InputManager();
     private ResourceManager _resource = new ResourceManager();
-    public static InputManager Input { get {  return Mg.input;}}
-    public static ResourceManager Resource { get {  return Mg._resource;}}
-    public static CanvasManager Canvas { get {  return Mg._canvas;}}
     
+    public static CanvasManager Canvas { get {  return Interface._canvas;}}
+    public static InputManager Input { get {  return Interface.input;}}
+    public static ResourceManager Resource { get {  return Interface._resource;}}
+
     void Start()
     {
 	    Init();
@@ -38,7 +40,11 @@ public class Manager : MonoBehaviour
         }
 
         DontDestroyOnLoad(go);
-        mg = go.GetComponent<Manager>();
-        
+        _interface = go.GetComponent<Manager>();
+    }
+
+    public void MapperCoroutine(IEnumerator evn)
+    { 
+        StartCoroutine(evn);
     }
 }

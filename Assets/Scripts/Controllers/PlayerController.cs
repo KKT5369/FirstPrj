@@ -1,3 +1,4 @@
+using System;
 using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -70,9 +71,19 @@ public class PlayerController : MonoBehaviour
             if (!EventSystem.current.IsPointerOverGameObject())
             {
                 _tagetPos = hit.point;
-                state = Define.State.Moving;    
+                state = Define.State.Moving;
             }
         }
-        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("NPC"))
+            Manager.Canvas.TalkStart(other);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Manager.Canvas.TalkEnd();
     }
 }

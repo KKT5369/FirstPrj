@@ -3,11 +3,10 @@ using UnityEngine.UI;
 
 public class NpcTalkController : MonoBehaviour
 {
-    bool TalkCheck;
+    //bool TalkCheck;
     private Quaternion rot;
     private int index = 1;
-    [SerializeField] private Canvas canvas;
-    
+
     private void Start()
     {
         rot = transform.parent.rotation;
@@ -21,7 +20,7 @@ public class NpcTalkController : MonoBehaviour
             = transform.parent.GetComponent<NpcData>().npcName;
         Talk.transform.Find("TalkBoard").transform.Find("Text").GetComponent<Text>().text
             = transform.parent.GetComponent<NpcData>().talks[0];
-        TalkCheck = true;
+        //TalkCheck = true;
         Talk.transform.Find("Button").GetComponent<Button>().onClick.AddListener(NextTalk);
     }
 
@@ -36,7 +35,7 @@ public class NpcTalkController : MonoBehaviour
         GameObject Talk = GameObject.Find("MainCanvas").transform.Find("Talk").gameObject;
         Talk.transform.Find("Button").GetComponent<Button>().onClick.RemoveListener(NextTalk);
         Talk.SetActive(false);
-        TalkCheck = false;
+        //TalkCheck = false;
         index = 1;
     }
 
