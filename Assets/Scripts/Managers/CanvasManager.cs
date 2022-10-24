@@ -1,15 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CanvasManager
 {
-    public Collider _other;
-    
-    public void tagetOther(Collider other)
+    public Action<Collider> _npcTalk;
+    public Action _npcTalkEnd;
+
+    public void TalkStart(Collider other)
     {
-        this._other = other;
+        _npcTalk.Invoke(other);
     }
-    
+
+    public void TalkEnd()
+    {
+        _npcTalkEnd.Invoke();
+    }
     
 }

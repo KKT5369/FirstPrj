@@ -79,11 +79,11 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("NPC"))
-            Manager.Canvas.tagetOther(other);
+            Manager.Canvas.TalkStart(other);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Manager.Canvas.tagetOther(null);
+        Manager.Canvas.TalkEnd();
     }
 }

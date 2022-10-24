@@ -15,7 +15,7 @@ public class Manager : MonoBehaviour
     public static CanvasManager Canvas { get {  return Interface._canvas;}}
     public static InputManager Input { get {  return Interface.input;}}
     public static ResourceManager Resource { get {  return Interface._resource;}}
-    
+
     void Start()
     {
 	    Init();
