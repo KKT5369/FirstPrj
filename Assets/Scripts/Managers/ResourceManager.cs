@@ -17,18 +17,22 @@ public class ResourceManager
 
     IEnumerator LoadAsync(string path)
     {
+        // TODO 제넥릭 타입은 T 로받고 Load와  Instantiate 분리.
         ResourceRequest request = Resources.LoadAsync<GameObject>($"Frefabs/{path}");
-
-        if (request == null)
-        {
-            Debug.Log($"path is not find {path}");
-            yield break;
-        }
         
         while (!request.isDone)
         {
             yield return null;
         }
+        
+        if (request.asset == null)
+        {
+            Debug.Log($"gameObject not Find [path name is {path}]");
+            yield break;
+        }
+        
+        
+        // typeof 체크해서 gameobject만 생성...
         Debug.Log("Object 생성");
         yield return Object.Instantiate(request.asset as GameObject);
         

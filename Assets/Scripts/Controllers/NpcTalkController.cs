@@ -6,8 +6,7 @@ public class NpcTalkController : MonoBehaviour
     //bool TalkCheck;
     private Quaternion rot;
     private int index = 1;
-    [SerializeField] private Canvas canvas;
-    
+
     private void Start()
     {
         rot = transform.parent.rotation;
