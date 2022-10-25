@@ -8,17 +8,18 @@ public class Manager : MonoBehaviour
     static Manager _interface;
     public static Manager Interface { get { Init(); return _interface;}}
 
-    private CanvasManager _canvas = new CanvasManager();
+    private UIManager _ui = new UIManager();
     InputManager input = new InputManager();
     private ResourceManager _resource = new ResourceManager();
     
-    public static CanvasManager Canvas { get {  return Interface._canvas;}}
+    public static UIManager UI { get {  return Interface._ui;}}
     public static InputManager Input { get {  return Interface.input;}}
     public static ResourceManager Resource { get {  return Interface._resource;}}
 
     void Start()
     {
 	    Init();
+        UI.Init();
     }
 
     void Update()

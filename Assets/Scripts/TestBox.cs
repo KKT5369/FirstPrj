@@ -18,10 +18,10 @@ public class TestBox : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             yield return new WaitForSeconds(3f);
-            Debug.Log("Instantiate 호출");
-            Manager.Resource.Instantiate("Ghost");
+            Manager.Resource.Instantiate<GameObject>("Ghost");
         }
     }
+    
 
     
 }

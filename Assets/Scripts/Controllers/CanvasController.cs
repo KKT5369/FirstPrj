@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class CanvasController : MonoBehaviour
 {
-    public GameObject Talk;
+    private GameObject Talk;
     public Collider _other { get; set; }
     private int index;
 
@@ -15,10 +15,10 @@ public class CanvasController : MonoBehaviour
 
     private void Update()
     {
-        Manager.Canvas._npcTalk -= NpcTalk;
-        Manager.Canvas._npcTalk += NpcTalk;
-        Manager.Canvas._npcTalkEnd -= EndTalk;
-        Manager.Canvas._npcTalkEnd += EndTalk;
+        // Manager.UI._npcTalk -= NpcTalk;
+        // Manager.UI._npcTalk += NpcTalk;
+        // Manager.UI._npcTalkEnd -= EndTalk;
+        // Manager.UI._npcTalkEnd += EndTalk;
     }
 
     void NpcTalk(Collider othrt)

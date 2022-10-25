@@ -6,19 +6,18 @@ using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-public class ResourceManager 
+public class ResourceManager
 {
 
-    public void Instantiate(string path)
-    {
-        Debug.Log("LoadAsync 호출");
-        Manager.Interface.MapperCoroutine(LoadAsync(path));
+    public void Instantiate<T>(string path) where T : Object
+    { 
+        Manager.Interface.MapperCoroutine(LoadAsync<T>(path));
     }
 
-    IEnumerator LoadAsync(string path)
+    IEnumerator LoadAsync<T>(string path) where T : Object
     {
         // TODO 제넥릭 타입은 T 로받고 Load와  Instantiate 분리.
-        ResourceRequest request = Resources.LoadAsync<GameObject>($"Frefabs/{path}");
+        ResourceRequest request = Resources.LoadAsync<T>($"Frefabs/{path}");
         
         while (!request.isDone)
         {
@@ -31,12 +30,8 @@ public class ResourceManager
             yield break;
         }
         
+        yield return request.asset as T;
         
-        // typeof 체크해서 gameobject만 생성...
-        Debug.Log("Object 생성");
-        yield return Object.Instantiate(request.asset as GameObject);
-        
-    }
 
-    
+    }
 }
