@@ -6,9 +6,9 @@ public class UIManager
 {
     private GameObject _canvas;
     private GameObject _talk;
-    private Text _npcName;
-    private Text _NpcTalk;
+    private TalkController _talkInfo;
     private NpcData _npcInfo;
+
     private int index = 0;
 
     // MainCanvas 생성.
@@ -30,19 +30,18 @@ public class UIManager
             GameObject talk = Resources.Load<GameObject>("Prefabs/Talk");
             _talk = Object.Instantiate(talk, _canvas.transform);
         }
-        
+
         if(other == null) return;
         
         // Talk UI 에 npc이름과 대화내용을 출력
-        _npcName = _talk.transform.Find("NpcName").transform.Find("Text").GetComponent<Text>();
-        _NpcTalk = _talk.transform.Find("TalkBoard").transform.Find("Text").GetComponent<Text>();
+        _talkInfo = _talk.GetComponent<TalkController>();
         _npcInfo = other.GetComponent<NpcData>();
         
-        _npcName.text = _npcInfo.npcName;
-        _NpcTalk.text = _npcInfo.talks[index++];
+        _talkInfo._npcName.text = _npcInfo.npcName;
+        _talkInfo._npcTalk.text = _npcInfo.talks[index++];
         
         // 클릭 이벤트 발생시 다음 대화 출력.
-        _talk.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => NextTalk(other));
+        _talkInfo._nextTalk.onClick.AddListener(() => NextTalk(other));
     }
     
     // 트리거 영역을 벗어나면 실행.
@@ -61,7 +60,7 @@ public class UIManager
     {
         if (other.GetComponent<NpcData>().talks.Count > index)
         {
-            _NpcTalk.text = other.GetComponent<NpcData>().talks[index++];
+            _talkInfo._npcTalk.text = other.GetComponent<NpcData>().talks[index++];
         }
         else
         {
