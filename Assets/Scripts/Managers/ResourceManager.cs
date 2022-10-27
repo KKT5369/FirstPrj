@@ -11,7 +11,7 @@ public class ResourceManager
 
     public void Instantiate<T>(string path) where T : Object
     { 
-        Manager.Interface.MapperCoroutine(LoadAsync<T>(path));
+        Manager.Instance.MapperCoroutine(LoadAsync<T>(path));
     }
 
     IEnumerator LoadAsync<T>(string path) where T : Object

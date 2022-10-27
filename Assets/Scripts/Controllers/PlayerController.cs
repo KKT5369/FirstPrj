@@ -75,15 +75,4 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("NPC"))
-            Manager.UI.CreatTalk(other);
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        Manager.UI.KillTalk();
-    }
 }

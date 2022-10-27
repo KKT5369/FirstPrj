@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class Manager : MonoBehaviour
 {
-    static Manager _interface;
-    public static Manager Interface { get { Init(); return _interface;}}
+    static Manager _instance;
+    public static Manager Instance { get { Init(); return _instance;}}
 
     private UIManager _ui = new UIManager();
     InputManager input = new InputManager();
     private ResourceManager _resource = new ResourceManager();
     
-    public static UIManager UI { get {  return Interface._ui;}}
-    public static InputManager Input { get {  return Interface.input;}}
-    public static ResourceManager Resource { get {  return Interface._resource;}}
+    public static UIManager UI { get {  return Instance._ui;}}
+    public static InputManager Input { get {  return Instance.input;}}
+    public static ResourceManager Resource { get {  return Instance._resource;}}
 
     void Start()
     {
@@ -41,7 +41,7 @@ public class Manager : MonoBehaviour
         }
 
         DontDestroyOnLoad(go);
-        _interface = go.GetComponent<Manager>();
+        _instance = go.GetComponent<Manager>();
     }
 
     public void MapperCoroutine(IEnumerator evn)
