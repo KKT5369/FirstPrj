@@ -11,10 +11,6 @@ public class CameraController : MonoBehaviour
     private Vector3 delta;
     [SerializeField]
     private GameObject player = null;
-    void Start()
-    {
-	
-    }
 
     void LateUpdate()
     {

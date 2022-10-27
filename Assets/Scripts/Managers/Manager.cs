@@ -9,11 +9,11 @@ public class Manager : MonoBehaviour
     public static Manager Instance { get { Init(); return _instance;}}
 
     private UIManager _ui = new UIManager();
-    InputManager input = new InputManager();
+    private InputManager _input = new InputManager();
     private ResourceManager _resource = new ResourceManager();
     
     public static UIManager UI { get {  return Instance._ui;}}
-    public static InputManager Input { get {  return Instance.input;}}
+    public static InputManager Input { get {  return Instance._input;}}
     public static ResourceManager Resource { get {  return Instance._resource;}}
 
     void Start()
@@ -24,7 +24,7 @@ public class Manager : MonoBehaviour
 
     void Update()
     {
-        input.OnUpdate();
+        _input.OnUpdate();
     }
 
     static void Init()

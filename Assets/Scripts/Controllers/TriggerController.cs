@@ -6,9 +6,9 @@ public class TriggerController : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("NPC"))
+        NpcData data = other.GetComponent<NpcData>();
+        if (other.CompareTag("NPC") && data.talks != null)
         {
-            NpcData data = other.GetComponent<NpcData>();
             string name = data.npcName;
             List<string> talkList = data.talks;
             Manager.UI.CreatTalk(name,talkList);
