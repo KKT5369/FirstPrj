@@ -44,7 +44,7 @@ public class Manager : MonoBehaviour
         _instance = go.GetComponent<Manager>();
     }
 
-    public void MapperCoroutine(IEnumerator evn)
+    public void CoroutineHelper(IEnumerator evn)
     { 
         StartCoroutine(evn);
     }

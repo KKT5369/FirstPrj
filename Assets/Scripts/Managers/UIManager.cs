@@ -6,8 +6,7 @@ public class UIManager
 {
     private GameObject _canvas;
     private GameObject _talk;
-    private int Index = 0;
-    
+
     // MainCanvas 생성.
     public void Init()
     {

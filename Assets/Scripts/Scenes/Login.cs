@@ -14,6 +14,6 @@ public class Login : MonoBehaviour
         var ps = userPs.text;
         
         Debug.Log($"ID >> {id} Ps >> {ps} 으로 로그인!!");
-        SceneManager.LoadScene("SampleScene");
+        LoadingController.LoadScene("GameScene");
     }
 }
