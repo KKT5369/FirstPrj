@@ -25,6 +25,10 @@ public class ResourceManager
             yield break;
         }
 
-        yield return request.asset as T;
+        if (typeof(T) == typeof(GameObject))
+        {
+            yield return Object.Instantiate(request.asset);
+        }
+
     }
 }

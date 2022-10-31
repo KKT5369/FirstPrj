@@ -6,14 +6,17 @@ public class UIManager
 {
     private GameObject _canvas;
     private GameObject _talk;
+    private GameObject _imotikon;
 
     // MainCanvas 생성.
     public void Init()
     {
         if (_canvas == null)
         {
-            var gm = Resources.Load<GameObject>("Prefabs/MainCanvas");
-            _canvas = Object.Instantiate(gm);
+            var go = Resources.Load<GameObject>("Prefabs/MainCanvas");
+            _canvas = Object.Instantiate(go);
+            var imotikonGO = Resources.Load<GameObject>("Prefabs/BtnImotikon");
+            _imotikon = Object.Instantiate(imotikonGO,_canvas.transform);
         }
     }
     
