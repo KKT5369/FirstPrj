@@ -10,7 +10,7 @@ public class ImotikonController : MonoBehaviour
 {
     private GameObject _panel;
     private Button _btnImoticon;
-    private bool _panleStatus = false;
+    private bool _panleStatus = true;
 
     private void Start()
     {
